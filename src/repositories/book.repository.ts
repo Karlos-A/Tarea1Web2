@@ -17,8 +17,24 @@ let books: Book[] = [
 
 //Repository es solamente para trabajar con los datos desde queries
 
-export function findAll(): Book[] {
-  return books;
+export function findAll(filters: Record<string, any> = {}): Book[] {
+  let results = books;
+  if (filters.title) {
+    results = results.filter((book) =>
+      book.title.toLowerCase().includes(filters.title.toLowerCase())
+    );
+  }
+  if (filters.author) {
+    results = results.filter((book) =>
+      book.author.toLowerCase().includes(filters.author.toLowerCase())
+    );
+  }
+  if (filters.year) {
+    results = results.filter((book) =>
+      book.year === Number(filters.year)
+    );
+  }
+  return results;
 }
 
 //Get a book by id Query
@@ -36,4 +52,12 @@ export const remove = (id: number) => {
   if (!exists) return false;
   books = books.filter((book) => book.id !== id);
   return true;
+}
+
+// PATCH
+export const update = (id: number, book: Partial<Book>) => {
+  const index = books.findIndex((b) => b.id === id);
+  if (index === -1) return null;
+  books[index] = { ...books[index], ...book, id };
+  return books[index];
 }

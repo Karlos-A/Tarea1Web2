@@ -13,6 +13,24 @@ let books: Book[] = [
     author: "Erich Gamma",
     year: 1994,
   },
+  {
+    id: 3,
+    title: "Cadáver Exquisito",
+    author: "Agustina Bazterrica",
+    year: 2017,
+  },
+  {
+    id: 4,
+    title: "It",
+    author: "Stephen King",
+    year: 1986,
+  },
+  {
+    id: 5,
+    title: "Book example lol",
+    author: "Me",
+    year: 2027,
+  },
 ];
 
 //Repository es solamente para trabajar con los datos desde queries
